@@ -26,10 +26,10 @@ class TypeController extends AdminController
         $obj = new Grid(new Type());
 
         $obj->column('id', __('Id'));
-        $obj->column('name', __('name'));
-        $obj->column('keys', __('keys'));
-        $obj->column('created_at', __('Created at'));
-        $obj->column('updated_at', __('Updated at'));
+        $obj->column('name', __('日志类型名'));
+        $obj->column('keys', __('键名逗号分隔'));
+        $obj->column('created_at', __('创建时间'));
+        $obj->column('updated_at', __('更新时间'));
 
         return $obj;
     }

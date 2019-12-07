@@ -41,10 +41,11 @@ class LogController extends AdminController
             request()->merge(['log_type'=>$log_type]);
         }
 
+        //var_dump($log_type);die;
         $keys = $types[0]['keys'];
         $params = [];
         foreach ($types as $type) {
-            if($log_type==$type['id']){
+            if($log_type==$type['name']){
                 $keys = $type['keys'];
             }
             $params[$type['name']] = $type['name'];
@@ -52,7 +53,7 @@ class LogController extends AdminController
         $keys = explode(',',$keys);
         $keys_copy = [];
         foreach ($keys as $key) {
-            $obj->column($key, __($key));
+            $obj->column($key, __($key))->style('text-align: center;')->limit(20)->copyable();
             $keys_copy[$key] = $key;
         }
 
