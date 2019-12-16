@@ -1,1 +1,6 @@
 后台框架使用地址: https://laravel-admin.org
+
+安装es,不能使用最新版本的es，因为最新版本的es不支持多类型索引
+docker run -it -d -p 9222:9200 -p 9333:9300 \
+-v /elasticsearch/data:/usr/share/elasticsearch/data \
+--name es elasticsearch:5.5.0

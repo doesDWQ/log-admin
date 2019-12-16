@@ -30,7 +30,12 @@ class Log extends BaseModel
             'body' => [
                 'query' => [
                     "match_all" => new \stdClass()
-                ]
+                ],
+                'sort' => [
+                    '_timestamp_'=>[
+                        'order'=>'desc',
+                    ],
+                ],
             ]
         ];
 
@@ -47,6 +52,8 @@ class Log extends BaseModel
 
         $data = Helper_Function::getEsClient()->search($params);
 
+        //var_dump($data);die;
+
         $ret = [];
         foreach ($data['hits']['hits'] as $hit) {
             $ret[] = $hit['_source'];
@@ -54,7 +61,11 @@ class Log extends BaseModel
 
         $ret = static::hydrate($ret);
 
-        $paginator = new LengthAwarePaginator($ret, $data['hits']['total'], $perPage);
+        $total = 0;
+        if(!empty($ret['hits']['total'])){
+            $total = $ret['hits']['total'];
+        }
+        $paginator = new LengthAwarePaginator($ret, $total, $perPage);
 
         $paginator->setPath(url()->current());
 

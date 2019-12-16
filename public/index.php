@@ -7,6 +7,8 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+//var_dump(array_unique(array_merge(['a','b','c'],['a','e'])));die;
+
 define('LARAVEL_START', microtime(true));
 
 /*
