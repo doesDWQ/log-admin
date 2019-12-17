@@ -25,17 +25,17 @@ class InitCommand extends Command
 
     //命令对应的处理方法
     protected $typesAndFunction = [
-        'init'=>'dealInit',
+        'init'=>'addIndex',
         'delete'=>'deleteIndex',
     ];
 
-    public function dealInit(){
+    public function addIndex(){
         $client = Helper_Function::getEsClient();
-        $response = $client->indices()->getMapping();
         $index = [
             'index' => Helper_Function::$index,
         ];
         $client->indices()->create($index);
+        $response = $client->indices()->getMapping();
         var_dump($response);
     }
 

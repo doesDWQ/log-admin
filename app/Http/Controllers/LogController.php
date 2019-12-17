@@ -26,9 +26,9 @@ class LogController extends Controller
         $body_keys = array_keys($body);
 
         $types = Type::getTypes();
-        if(empty($types)){
-            return Helper_Function::error('没有日志索引,请先初始化索引');
-        }
+//        if(empty($types)){
+//            return Helper_Function::error('没有日志索引,请先初始化索引');
+//        }
 
         $names = array_column($types,'name');
         if(!in_array($report_type,$names)){
