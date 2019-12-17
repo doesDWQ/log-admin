@@ -63,6 +63,8 @@ class LogController extends Controller
 
         //添加上一个插入时间戳
         $body['_timestamp_'] = time();
+        //加上一个ip地址
+        $body['ip'] = request()->getClientIp();
 
         //var_dump($report_type);die;
         $client = Helper_Function::getEsClient();

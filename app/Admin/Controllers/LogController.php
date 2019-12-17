@@ -60,6 +60,7 @@ class LogController extends AdminController
         $obj->column('_timestamp_','时间')->display(function ($val){
             return date('Y-m-d H:i:s',$val);
         });
+        $obj->column('ip','ip地址');
 
         $obj->filter(function($filter)use($params,$keys_copy){
             $filter->column(1/3,function ($filter)use($params){
