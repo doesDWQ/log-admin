@@ -53,7 +53,8 @@ class LogController extends AdminController
         $keys = explode(',',$keys);
         $keys_copy = [];
         foreach ($keys as $key) {
-            $obj->column($key, __($key))->style('text-align: center;')->limit(20)->copyable();
+            //->limit(50)   将limit限制解除掉
+            $obj->column($key, __($key))->style('text-align: center;')->copyable();
             $keys_copy[$key] = $key;
         }
 

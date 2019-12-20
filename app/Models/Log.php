@@ -11,7 +11,7 @@ class Log extends BaseModel
 
     public function paginate()
     {
-        $perPage = Request::get('per_page', 10);
+        $perPage = Request::get('per_page',20); //这个会有默认值
 
         $page = Request::get('page', 1);
 
@@ -52,7 +52,10 @@ class Log extends BaseModel
 
         $data = Helper_Function::getEsClient()->search($params);
 
-        //var_dump($data);die;
+        $total = 0;
+        if(!empty($data['hits']['total'])){
+            $total = $data['hits']['total'];
+        }
 
         $ret = [];
         foreach ($data['hits']['hits'] as $hit) {
@@ -61,10 +64,9 @@ class Log extends BaseModel
 
         $ret = static::hydrate($ret);
 
-        $total = 0;
-        if(!empty($ret['hits']['total'])){
-            $total = $ret['hits']['total'];
-        }
+
+
+
         $paginator = new LengthAwarePaginator($ret, $total, $perPage);
 
         $paginator->setPath(url()->current());
