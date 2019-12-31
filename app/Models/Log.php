@@ -41,11 +41,9 @@ class Log extends BaseModel
 
         //存在搜索字段的时候
         if(!empty($keyword)){
-            $params['body'] =[
-                'query' => [
-                    'match' => [
-                        $field => $keyword
-                    ]
+            $params['body']['query'] =[
+                'match' => [
+                    $field => $keyword
                 ]
             ];
         }
