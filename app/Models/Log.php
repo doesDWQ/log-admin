@@ -61,7 +61,7 @@ class Log extends BaseModel
         }
 
         $ret = static::hydrate($ret);
-        
+
         $paginator = new LengthAwarePaginator($ret, $total, $perPage);
 
         $paginator->setPath(url()->current());
